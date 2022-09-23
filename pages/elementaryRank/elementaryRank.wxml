@@ -1,0 +1,13 @@
+<!--pages/elementaryRank/elementaryRank.wxml-->
+<mp-form-page title="初真十戒" subtitle="{{date}}">
+    <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+    </mp-form>
+    <mp-cells title="">  
+        <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange">
+            <mp-checkbox wx:for="{{checkboxItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+        </mp-checkbox-group>
+    </mp-cells>
+    <view slot="button">
+        <button class="weui-btn" type="primary" bindtap="submitForm">打卡</button>
+    </view>
+</mp-form-page>

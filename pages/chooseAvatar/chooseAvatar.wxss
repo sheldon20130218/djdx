@@ -1,0 +1,21 @@
+/* pages/login/login.wxss */
+@import '/miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+
+.avatar-wrapper {
+    padding: 0;
+    width: 56px !important;
+    border-radius: 8px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  
+.avatar {
+    display: block;
+    width: 56px;
+    height: 56px;
+}
+
+.container {
+    display: flex;
+}
+  
