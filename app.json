@@ -1,49 +1,54 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/elementaryRank/elementaryRank",
-    "pages/mine/mine",
-    "pages/chooseAvatar/chooseAvatar", 
-    "pages/commandmentArticle/commandmentArticle",
-    "pages/middleRank/middleRank",
-    "pages/highRank/highRank"
-  ],
-  "window":{
-    "enablePullDownRefresh": true,
-    "backgroundTextStyle": "dark",
-    "backgroundColor": "#039",
-
-    "navigationBarBackgroundColor": "#576B95",
-    "navigationBarTitleText": "道戒笃行",
-    "navigationBarTextStyle":"white"
-  },
-  "tabBar": {
-      "borderStyle": "black",
-      "color": "#222",
-      "selectedColor": "#a00",
-      "position":"bottom",
-      "list": [{
-            "text":"初真",
-            "pagePath": "pages/elementaryRank/elementaryRank",
-            "iconPath": "/images/star_disable.png",
-            "selectedIconPath": "/images/star_enable.png"
-      },{
-            "text":"中级",
-            "pagePath": "pages/middleRank/middleRank",
-            "iconPath": "/images/moon_disable.png",
-            "selectedIconPath": "/images/moon_enable.png"
-        },{
-            "text":"天仙",
-            "pagePath": "pages/highRank/highRank",
-            "iconPath": "/images/sun_disable.png",
-            "selectedIconPath": "/images/sun_enable.png"
-        },{
-            "text":"我的",
-            "pagePath": "pages/mine/mine",
-            "iconPath": "/images/mine_disable.png",
-            "selectedIconPath": "/images/mine_enable.png"
-        }]
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/index/index",
+        "pages/elementaryRank/elementaryRank",
+        "pages/mine/mine",
+        "pages/chooseAvatar/chooseAvatar",
+        "pages/commandmentArticle/commandmentArticle",
+        "pages/middleRank/middleRank",
+        "pages/highRank/highRank",
+        "pages/info/info"
+    ],
+    "window": {
+        "enablePullDownRefresh": true,
+        "backgroundTextStyle": "dark",
+        "backgroundColor": "#039",
+        "navigationBarBackgroundColor": "#576B95",
+        "navigationBarTitleText": "道戒笃行",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "borderStyle": "black",
+        "color": "#222",
+        "selectedColor": "#a00",
+        "position": "bottom",
+        "list": [
+            {
+                "text": "初真",
+                "pagePath": "pages/elementaryRank/elementaryRank",
+                "iconPath": "/images/star_disable.png",
+                "selectedIconPath": "/images/star_enable.png"
+            },
+            {
+                "text": "中级",
+                "pagePath": "pages/middleRank/middleRank",
+                "iconPath": "/images/moon_disable.png",
+                "selectedIconPath": "/images/moon_enable.png"
+            },
+            {
+                "text": "天仙",
+                "pagePath": "pages/highRank/highRank",
+                "iconPath": "/images/sun_disable.png",
+                "selectedIconPath": "/images/sun_enable.png"
+            },
+            {
+                "text": "我的",
+                "pagePath": "pages/mine/mine",
+                "iconPath": "/images/mine_disable.png",
+                "selectedIconPath": "/images/mine_enable.png"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
 }
