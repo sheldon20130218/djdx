@@ -1,19 +1,12 @@
 {
   "pages":[
+    "pages/index/index",
     "pages/elementaryRank/elementaryRank",
     "pages/mine/mine",
     "pages/chooseAvatar/chooseAvatar", 
     "pages/commandmentArticle/commandmentArticle",
-    "pages/test/test",
-    
-    
-    
-       
     "pages/middleRank/middleRank",
-    "pages/highRank/highRank",
-    
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/highRank/highRank"
   ],
   "window":{
     "enablePullDownRefresh": true,

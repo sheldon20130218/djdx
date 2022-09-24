@@ -7,15 +7,9 @@
 </view> -->
 <view class="container">
     <view class="userinfo">
-        <block wx:if="{{hasUserInfo}}">
-            <image bindtap="bindViewTap" class="userinfo-avatar" src="data:image/png;base64,{{avatarBase64}}" mode="cover"></image>
+        <block >
+            <image bindtap="bindViewTap" class="userinfo-avatar" src="{{avatarUrl}}" mode="cover" />
             <text class="userinfo-nickname">{{nickname}}</text>
-        </block>
-        <block wx:else>
-            <view class="userinfo-avatar" bindtap="bindViewTap">
-                <open-data type="userAvatarUrl"></open-data>
-            </view>
-            <open-data type="userNickName"></open-data>
         </block>
     </view>   
 </view>

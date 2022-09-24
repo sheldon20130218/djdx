@@ -1,6 +1,6 @@
 // pages/elementaryRank/elementaryRank.js
 
-var app = getApp();
+const app = getApp();
 Page({
 
     /**
@@ -8,7 +8,7 @@ Page({
      */
     data: {
         desc:"天真言：出家超俗，皆宿有良契，故能独拔常伦。若慎终如始，精至修练，当福延七祖，庆流一门。所谓九层之台，起于累土，千里之行，始于足下，乃至功成德就，白日升天。于是乎，开度之时，宜受初真之戒。其戒有十尔，当受之。",
-        date:"壬寅年 戊申月 甲辰日",
+        date:"",
         checkboxItems: [
             {name: '第一戒者，不得阴贼潜谋，害物利己，当行阴德，广济群生。', value: '1', checked: false},
             {name: '第二戒者，不得杀害含生，以充滋味，当行慈惠，以及昆虫。', value: '2'},
@@ -38,7 +38,7 @@ Page({
     },
     checkboxChange: function (e) {
         console.log('checkbox发生change事件，携带value值为：', e.detail.value);
-
+        app.globalData.userInfo.token = "890E9DCB7251674170F8EFFF16D5E9E6A8A4C31142D406C469447296E6DFDABB"
         var checkboxItems = this.data.checkboxItems, values = e.detail.value;
         for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
             checkboxItems[i].checked = false;
@@ -64,19 +64,34 @@ Page({
         console.log(this.data.formData.checkbox);
     },
 
+    getDate() {
+      wx.request({
+        url: `https://www.ywschm.cn/api/date/taoDate/${app.globalData.userInfo.token}`,
+        method: 'GET',
+        success: (res) => {
+          console.log('res data', res);
+          if (res.statusCode === 200) {
+            this.setData({
+              date: res.data
+            })
+          }
+        }
+      })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-        console.log(app.globalData.eRank);
+        // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        console.log("elementaryRank onLoad", app.globalData.eRank);
+        this.getDate()
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-
+      
     },
 
     /**
