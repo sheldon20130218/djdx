@@ -66,8 +66,11 @@ Page({
 
     getDate() {
       wx.request({
-        url: `https://www.ywschm.cn/api/date/taoDate/${app.globalData.userInfo.token}`,
+        url: `${app.globalData.baseUrl}/api/date/taoDate`,
         method: 'GET',
+        header: {
+          token: app.globalData.userInfo.token
+        },
         success: (res) => {
           console.log('res data', res);
           if (res.statusCode === 200) {
