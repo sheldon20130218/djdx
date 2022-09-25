@@ -10,7 +10,7 @@
     </mp-cells>
   </mp-form>
   <view>
-    <button type="primary" size="default" style="margin-top: 100rpx;" bindtap="saveButtonTap">保存</button>
+    <button type="primary" size="default" style="margin-top: 100rpx;" loading="{{saving}}" bindtap="onSave">保存</button>
   </view>
   
 </view>

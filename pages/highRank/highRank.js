@@ -1,12 +1,16 @@
 // pages/highRank/highRank.js
+
+const { formatDate } = require("../../utils/util");
+const app = getApp();
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+      clockined: false,
         desc:"",
-        date:"壬寅年 戊申月 甲辰日",
+        date: '',
         checkboxItems: [
             {name: '一者智慧远身行法，不可称量。', value: '1', checked: false},
             {name: '二者慈悲远身行法，不可称量。', value: '2'},
@@ -19,54 +23,122 @@ Page({
             {name: '九者遣情远身行法，不可称量。', value: '9'},
             {name: '十者普心远身行法，不可称量。', value: '10'}
         ],
+        clockinIds: [],
+    saving: false
     },
 
-    radioChange: function (e) {
-        console.log('radio发生change事件，携带value值为：', e.detail.value);
-
-        var radioItems = this.data.radioItems;
-        for (var i = 0, len = radioItems.length; i < len; ++i) {
-            radioItems[i].checked = radioItems[i].value == e.detail.value;
-        }
-
-        this.setData({
-            radioItems: radioItems,
-            [`formData.radio`]: e.detail.value
-        });
+    checkboxChange: function ({ detail: { value } }) {
+      const { clockined, checkboxItems } = this.data
+      if (!clockined) {
+        checkboxItems.forEach(item => {
+          item.checked = value.indexOf(item.value) !== -1
+        })
+      }
+      this.setData({
+        checkboxItems,
+        clockinIds: value
+      })
     },
-    checkboxChange: function (e) {
-        console.log('checkbox发生change事件，携带value值为：', e.detail.value);
-
-        var checkboxItems = this.data.checkboxItems, values = e.detail.value;
-        for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
-            checkboxItems[i].checked = false;
-
-            for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-                if(checkboxItems[i].value == values[j]){
-                    checkboxItems[i].checked = true;
-                    break;
-                }
+  
+    onSave() {
+      const { clockined, clockinIds, saving } = this.data
+      if (clockined || saving || clockinIds.length === 0) {
+        return
+      }
+      wx.showLoading({
+        title: '正在打卡',
+      })
+      this.setData({
+        saving: true
+      })
+      const time = new Date(formatDate(new Date())).valueOf()
+      wx.request({
+        url: `${app.globalData.baseUrl}/api/clockin/superior`,
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          token: app.globalData.userInfo.token
+        },
+        data: {
+          time: time,
+          preceptIds: clockinIds.join()
+        },
+        success: (res) => {
+          if (res.statusCode === 200) {
+            wx.hideLoading({
+              success: () => {
+                wx.showToast({
+                  title: '打卡完成',
+                })
+              }
+            })
+            this.setData({
+              clockined: true
+            })
+          } else {
+            wx.hideLoading({
+              success: () => {
+                wx.showToast({
+                  title: '打卡失败',
+                })
+              }
+            })
+          }
+        },
+        fail: (err) => {
+          wx.hideLoading({
+            success: () => {
+              wx.showToast({
+                title: '打卡失败',
+              })
             }
+          })
+        },
+        complete: () => {
+          this.setData({
+            saving: false
+          })
         }
-
-        this.setData({
-            checkboxItems: checkboxItems,
-            [`formData.checkbox`]: e.detail.value
-        });
+      })
     },
-
-    submitForm(event){
-        if(this.data.formData == undefined){
-            return;
+  
+    getDate() {
+      wx.request({
+        url: `${app.globalData.baseUrl}/api/date/taoDate`,
+        method: 'GET',
+        header: {
+          token: app.globalData.userInfo.token
+        },
+        success: (res) => {
+          if (res.statusCode === 200) {
+            this.setData({
+              date: res.data
+            })
+          }
         }
-        console.log(this.data.formData.checkbox);
+      })
     },
-
+  
+    fetchPercept() {
+      wx.request({
+        url: `${app.globalData.baseUrl}/api/precepts/today`,
+        header: {
+          token: app.globalData.userInfo.token
+        },
+        success: (res) => {
+          if (res.statusCode === 200 && res.data) {
+            console.log('res data', res.data);
+          }
+        }
+      })
+    },
+  
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+      this.getDate()
+      this.fetchPercept()
     },
 
     /**

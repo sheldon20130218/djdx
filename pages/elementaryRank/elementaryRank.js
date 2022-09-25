@@ -1,7 +1,6 @@
 // pages/elementaryRank/elementaryRank.js
 
 const { formatDate } = require("../../utils/util");
-
 const app = getApp();
 Page({
 
@@ -73,6 +72,9 @@ Page({
                   })
                 }
               })
+              this.setData({
+                clockined: true
+              })
             } else {
               wx.hideLoading({
                 success: () => {
@@ -121,7 +123,7 @@ Page({
       wx.request({
         url: `${app.globalData.baseUrl}/api/precepts/today`,
         header: {
-          token: 'dfdsfdsf'
+          token: app.globalData.userInfo.token
         },
         success: (res) => {
           if (res.statusCode === 200 && res.data) {

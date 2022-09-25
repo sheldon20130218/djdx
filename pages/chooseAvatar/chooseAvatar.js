@@ -7,15 +7,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tempAvatarFilePath: undefined,
+    saving: false,
     avatarUrl: undefined,
     theme: wx.getSystemInfoSync().theme,
     nickname: null,
   },
 
-  requestNickName: function (avatarBase64) {
+  updateNickNameAndAvatar: function (avatarBase64) {
     let url = `${app.globalData.baseUrl}/api/user/modifyUserNickname`;
     const { nickname } = this.data
+    this.setData({
+      saving: true
+    })
     wx.request({
       url: url,//仅为示例，并非真实的接口地址
       method: 'POST',
@@ -32,13 +35,7 @@ Page({
           wx.setStorageSync('userInfo', res.data)
           app.globalData.userInfo = res.data
           wx.showToast({
-            title: '保存成功',
-            duration: 30000,
-            success: () => {
-              wx.navigateBack({
-                delta: 1,
-              })
-            }
+            title: '保存成功'
           })
         } else {
           wx.showToast({
@@ -46,6 +43,17 @@ Page({
             icon: 'error'
           })
         }
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: '保存失败',
+          icon: 'error'
+        })
+      },
+      complete: () => {
+        this.setData({
+          saving: false
+        })
       }
     })
   },
@@ -54,7 +62,7 @@ Page({
     const { avatarUrl } = e.detail
     this.setData({ avatarUrl });
   },
-  saveButtonTap(e) {
+  onSave(e) {
     const { avatarUrl } = this.data
     let newAvatar = ''
     if (avatarUrl && avatarUrl.startsWith("wxfile")) {
@@ -68,7 +76,7 @@ Page({
         console.error(e)
       }
     }
-    this.requestNickName(newAvatar)
+    this.updateNickNameAndAvatar(newAvatar)
   },
 
   bindNicknameInput(e) {
@@ -121,24 +129,4 @@ Page({
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })
