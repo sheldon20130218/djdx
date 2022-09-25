@@ -11,6 +11,19 @@ App({
       token: '',
     },
   },
+  watch(obj, key, method) {
+    Object.defineProperty(obj, key, {
+      configurable: true,
+      enumerable: true,
+      set: function (value) {
+        this._name = value;
+        method(value);
+      },
+      get: function () {
+        return this._name
+      }
+    })
+  },
   onLaunch() {
     require('./utils/precepts.js', precepts => {
       this.globalData.eRank = precepts.elementaryPrecepts;

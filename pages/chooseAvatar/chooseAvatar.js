@@ -57,7 +57,7 @@ Page({
   saveButtonTap(e) {
     const { avatarUrl } = this.data
     let newAvatar = ''
-    if (avatarUrl && avatarUrl.startsWith("tmp")) {
+    if (avatarUrl && avatarUrl.startsWith("wxfile")) {
       const fs = wx.getFileSystemManager()
         const base64Text = fs.readFileSync(this.data.avatarUrl, 'base64', 0)
         newAvatar = `data:image/png;base64, ${base64Text}`

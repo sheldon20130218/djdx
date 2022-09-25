@@ -8,6 +8,6 @@
         </mp-checkbox-group>
     </mp-cells>
     <view slot="button">
-        <button class="weui-btn" type="primary" bindtap="submitForm">打卡</button>
+        <button class="weui-btn" type="primary" bindtap="onSave">打卡</button>
     </view>
 </mp-form-page>

@@ -7,7 +7,8 @@
         "pages/commandmentArticle/commandmentArticle",
         "pages/middleRank/middleRank",
         "pages/highRank/highRank",
-        "pages/info/info"
+        "pages/info/info",
+        "pages/history/history"
     ],
     "window": {
         "enablePullDownRefresh": true,

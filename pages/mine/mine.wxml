@@ -21,7 +21,7 @@
     <mp-cell hover link url="/pages/commandmentArticle/commandmentArticle" value="三坛戒文" footer="">
         <image slot="icon" src="../../images/book.svg" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
     </mp-cell>
-    <mp-cell hover link url="/pages/index/index" value="我的打卡" footer="">
+    <mp-cell hover link url="/pages/history/history" value="我的打卡" footer="">
         <image slot="icon" src="../../images/sign.svg" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
     </mp-cell>
 </mp-cells>

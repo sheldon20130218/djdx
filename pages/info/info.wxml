@@ -33,6 +33,6 @@
         <textarea id="specialty" class="weui-textarea" auto-height maxlength="-1"  name="specialty" value="{{info.specialty}}" placeholder="请输入特长" bindinput="onChange" />
       </mp-cell>
     </mp-cells>
-    <button class="save" type="primary" loading="{{saving}}" bindtap="onSave">保存</button>
+    <button class="weui-btn save" type="primary" loading="{{saving}}" bindtap="onSave">保存</button>
   </mp-form>
 </view>

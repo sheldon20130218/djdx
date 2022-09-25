@@ -1,5 +1,7 @@
 // pages/elementaryRank/elementaryRank.js
 
+const { formatDate } = require("../../utils/util");
+
 const app = getApp();
 Page({
 
@@ -7,10 +9,11 @@ Page({
      * 页面的初始数据
      */
     data: {
+        clockined: false,
         desc:"天真言：出家超俗，皆宿有良契，故能独拔常伦。若慎终如始，精至修练，当福延七祖，庆流一门。所谓九层之台，起于累土，千里之行，始于足下，乃至功成德就，白日升天。于是乎，开度之时，宜受初真之戒。其戒有十尔，当受之。",
         date:"",
         checkboxItems: [
-            {name: '第一戒者，不得阴贼潜谋，害物利己，当行阴德，广济群生。', value: '1', checked: false},
+            {name: '第一戒者，不得阴贼潜谋，害物利己，当行阴德，广济群生。', value: '1', checked: true},
             {name: '第二戒者，不得杀害含生，以充滋味，当行慈惠，以及昆虫。', value: '2'},
             {name: '第三戒者，不得淫邪败真，秽慢灵气，当守贞操，使无缺犯。', value: '3'},
             {name: '第四戒者，不得败人成功，离人骨肉，当以道助物，令九族雍和。', value: '4'},
@@ -21,47 +24,80 @@ Page({
             {name: '第九戒者，不得不忠不孝，不仁不信，当尽节君亲，推诚万物。。', value: '9'},
             {name: '第十戒者，不得轻忽言笑，举动非真，当持重寡词，以道德为务。', value: '10'}
         ],
+        clockinIds: [],
+        saving: false
     },
 
-    radioChange: function (e) {
-        console.log('radio发生change事件，携带value值为：', e.detail.value);
-
-        var radioItems = this.data.radioItems;
-        for (var i = 0, len = radioItems.length; i < len; ++i) {
-            radioItems[i].checked = radioItems[i].value == e.detail.value;
+    checkboxChange: function ({detail: { value }}) {
+        const {clockined, checkboxItems} = this.data
+        if (!clockined) {
+          checkboxItems.forEach(item => {
+            item.checked = value.indexOf(item.value) !== -1
+          })
         }
-
         this.setData({
-            radioItems: radioItems,
-            [`formData.radio`]: e.detail.value
-        });
+          checkboxItems,
+          clockinIds: value
+        })
     },
-    checkboxChange: function (e) {
-        console.log('checkbox发生change事件，携带value值为：', e.detail.value);
-        app.globalData.userInfo.token = "890E9DCB7251674170F8EFFF16D5E9E6A8A4C31142D406C469447296E6DFDABB"
-        var checkboxItems = this.data.checkboxItems, values = e.detail.value;
-        for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
-            checkboxItems[i].checked = false;
 
-            for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-                if(checkboxItems[i].value == values[j]){
-                    checkboxItems[i].checked = true;
-                    break;
+    onSave() {
+      const {clockined, clockinIds, saving} = this.data
+        if (clockined || saving || clockinIds.length === 0) {
+          return
+        }
+        wx.showLoading({
+          title: '正在打卡',
+        })
+        this.setData({
+          saving: true
+        })
+        const time = new Date(formatDate(new Date())).valueOf()
+        wx.request({
+          url: `${app.globalData.baseUrl}/api/clockin/elementary`,
+          method: 'POST',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded',
+            token: app.globalData.userInfo.token
+          },
+          data: {
+            time: time,
+            preceptIds: clockinIds.join()
+          },
+          success: (res) => {
+            if (res.statusCode === 200) {
+              wx.hideLoading({
+                success: () => {
+                  wx.showToast({
+                    title: '打卡完成',
+                  })
                 }
+              })
+            } else {
+              wx.hideLoading({
+                success: () => {
+                  wx.showToast({
+                    title: '打卡失败',
+                  })
+                }
+              })
             }
-        }
-
-        this.setData({
-            checkboxItems: checkboxItems,
-            [`formData.checkbox`]: e.detail.value
-        });
-    },
-
-    submitForm(event){
-        if(this.data.formData == undefined){
-            return;
-        }
-        console.log(this.data.formData.checkbox);
+          },
+          fail: (err) => {
+            wx.hideLoading({
+              success: () => {
+                wx.showToast({
+                  title: '打卡失败',
+                })
+              }
+            })
+          },
+          complete: () => {
+            this.setData({
+              saving: false
+            })
+          }
+        })
     },
 
     getDate() {
@@ -72,7 +108,6 @@ Page({
           token: app.globalData.userInfo.token
         },
         success: (res) => {
-          console.log('res data', res);
           if (res.statusCode === 200) {
             this.setData({
               date: res.data
@@ -81,13 +116,27 @@ Page({
         }
       })
     },
+
+    fetchPercept() {
+      wx.request({
+        url: `${app.globalData.baseUrl}/api/precepts/today`,
+        header: {
+          token: 'dfdsfdsf'
+        },
+        success: (res) => {
+          if (res.statusCode === 200 && res.data) {
+            console.log('res data', res.data);
+          }
+        }
+      })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-        console.log("elementaryRank onLoad", app.globalData.eRank);
         this.getDate()
+        this.fetchPercept()
     },
 
     /**

@@ -1,0 +1,25 @@
+<!--pages/history/history.wxml-->
+<view>
+  <mp-cells>
+    <mp-cell title="打卡日期">
+      <picker slot="footer" id="crownTime" name="date" mode="date" value="{{date}}" end="{{endDate}}" bindchange="onDateChange" >
+          <text>{{date}}</text>
+        </picker>
+    </mp-cell>
+  </mp-cells>
+  <mp-cells title="初真">
+    <mp-checkbox-group id="elementaryRank" prop="elementaryRank" bindchange="onCheckboxChange">
+      <mp-checkbox wx:for="{{elementaryRank}}" wx:key="preceptId" label="{{item.precept}}" value="{{item.preceptId}}" checked="{{item.isClockin}}" />
+    </mp-checkbox-group>
+  </mp-cells>
+  <mp-cells title="中级">
+    <mp-checkbox-group id="middleRank" prop="middleRank" bindchange="onCheckboxChange">
+      <mp-checkbox wx:for="{{middleRank}}" wx:key="preceptId" label="{{item.precept}}" value="{{item.preceptId}}" checked="{{item.isClockin}}" />
+    </mp-checkbox-group>
+  </mp-cells>
+  <mp-cells title="天仙">
+    <mp-checkbox-group id="hightRank" prop="hightRank" bindchange="onCheckboxChange">
+      <mp-checkbox wx:for="{{hightRank}}" wx:key="preceptId" label="{{item.precept}}" value="{{item.preceptId}}" checked="{{item.isClockin}}" />
+    </mp-checkbox-group>
+  </mp-cells>
+</view>
