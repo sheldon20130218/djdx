@@ -1,76 +1,38 @@
 <!--pages/info/info.wxml-->
-<view class="container">
-  <view class="form-row">
-    <text>手机号</text>
-    <view class="weui-cell weui-cell_input right" >
-      <view class="weui-cell__bd" >
-        <input class="weui-input" name="phone" value="{{info.phone}}" placeholder="请输入手机号" />
-      </view>
-    </view>
-  </view>
-  <view class="form-row">
-    <text>宗派</text>
-    <view class="weui-cell weui-cell_input right" >
-      <view class="weui-cell__bd" >
-        <input class="weui-input" name="sect" value="{{info.sect}}" placeholder="请输入宗派名称" />
-      </view>
-    </view>
-  </view>
-  <view class="form-row">
-    <text>师承(师父)</text>
-    <view class="weui-cell weui-cell_input right" >
-      <view class="weui-cell__bd" >
-        <input class="weui-input" name="inheritance" value="{{info.inheritance}}" placeholder="请输入师承" />
-      </view>
-    </view>
-  </view>
-  <view class="form-row">
-    <text>法名</text>
-    <view class="weui-cell weui-cell_input right" >
-      <view class="weui-cell__bd" >
-        <input class="weui-input" name="legalName" value="{{info.legalName}}" placeholder="请输入法名" />
-      </view>
-    </view>
-  </view>
-  <view class="form-row">
-    <text>出家宫观庵</text>
-    <view class="weui-cell weui-cell_input right" >
-      <view class="weui-cell__bd" >
-        <input class="weui-input" name="taoistTemple" value="{{info.taoistTemple}}" placeholder="请输入现居宫观庵" />
-      </view>
-    </view>
-  </view>
-  <view class="form-row">
-    <text>现居宫观庵</text>
-    <view class="weui-cell weui-cell_input right" >
-      <view class="weui-cell__bd" >
-        <input class="weui-input" name="currentTaoistTemple" value="{{info.currentTaoistTemple}}" placeholder="请输入现居宫观庵" />
-      </view>
-    </view>
-  </view>
-  <view class="form-row">
-    <text>冠巾时间</text>
-    <view class="weui-cell weui-cell_input right" >
-      <view class="weui-cell__bd" >
-        <input class="weui-input" name="crownTime" value="{{info.crownTime}}" placeholder="请输入冠巾时间" />
-      </view>
-    </view>
-  </view>
-  <view class="form-row">
-    <text>教职证号</text>
-    <view class="weui-cell weui-cell_input right" >
-      <view class="weui-cell__bd" >
-        <input class="weui-input" name="teachNo" value="{{info.teachNo}}" placeholder="请输入教职证号" />
-      </view>
-    </view>
-  </view>
-  <view class="form-row">
-    <text>特长</text>
-    <view class="weui-cell weui-cell_input right" >
-      <view class="weui-cell__bd" >
-        <input class="weui-input" name="specialty" value="{{info.specialty}}" placeholder="请输入特长" />
-      </view>
-    </view>
-  </view>
-  <button type="primary" loading="{{saving}}" class="save">保存</button>
+<view>
+  <mp-form>
+    <mp-cells>
+      <mp-cell title="手机号">
+        <input id="phone" class="weui-input" name="phone" maxlength="11" value="{{info.phone}}" placeholder="请输入手机号" bindinput="onChange" />
+      </mp-cell>
+      <mp-cell title="宗派">
+        <input id="sect" class="weui-input" name="sect" value="{{info.sect}}" placeholder="请输入宗派名称" bindinput="onChange" />
+      </mp-cell>
+      <mp-cell title="师承(师父)">
+        <input id="inheritance" class="weui-input" name="inheritance" value="{{info.inheritance}}" placeholder="请输入师承" bindinput="onChange" />
+      </mp-cell>
+      <mp-cell title="法名">
+        <input id="legalName" class="weui-input" name="legalName" value="{{info.legalName}}" placeholder="请输入法名" bindinput="onChange" />
+      </mp-cell>
+      <mp-cell title="出家宫观庵">
+        <input id="taoistTemple" class="weui-input" name="taoistTemple" value="{{info.taoistTemple}}" placeholder="请输入现居宫观庵" bindinput="onChange" />
+      </mp-cell>
+      <mp-cell title="现居宫观庵">
+        <input id="currentTaoistTemple" class="weui-input" name="currentTaoistTemple" value="{{info.currentTaoistTemple}}" placeholder="请输入现居宫观庵" bindinput="onChange" />
+      </mp-cell>
+      <mp-cell title="冠巾时间">
+        <picker id="crownTime" name="crownTime" mode="date" value="{{info.crownTime}}" bindchange="onChange" >
+          <text wx:if="{{info.crownTime}}" >{{info.crownTime}}</text>
+          <text wx:else style="color: #808080;">请选择冠巾时间</text>
+        </picker>
+      </mp-cell>
+      <mp-cell title="教职证号">
+        <input id="teachNo" class="weui-input" name="teachNo" value="{{info.teachNo}}" placeholder="请输入教职证号" bindinput="onChange" />
+      </mp-cell>
+      <mp-cell title="特长">
+        <textarea id="specialty" class="weui-textarea" auto-height maxlength="-1"  name="specialty" value="{{info.specialty}}" placeholder="请输入特长" bindinput="onChange" />
+      </mp-cell>
+    </mp-cells>
+    <button class="save" type="primary" loading="{{saving}}" bindtap="onSave">保存</button>
+  </mp-form>
 </view>

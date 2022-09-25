@@ -1,4 +1,5 @@
 // pages/info/info.js
+const app = getApp()
 Page({
 
     /**
@@ -7,15 +8,85 @@ Page({
     data: {
       saving: false,
       info: {
-        phone: 13100001111,
+        phone: '13100001111',
+        sect: '',
+        inheritance: '',
+        legalName: '',
+        taoistTemple: '',
+        currentTaoistTemple: '',
+        crownTime: '',
+        teachNo: '',
+        specialty: ''
       }
+    },
+
+    onChange({detail: { value }, currentTarget: { id }}) {
+      const key = `info.${id}`
+      this.setData({
+        [key]: value
+      })
+    },
+
+    onSave() {
+      if (this.data.saving) {
+        return
+      }
+      console.log(this.data.info);
+      this.setData({
+        saving: true
+      })
+      // wx.request({
+      //   url: `${app.globalData.baseUrl}/save`,
+      //   method: 'POST',
+      //   header: {
+      //     token: app.globalData.userInfo.token
+      //   },
+      //   success: (res) => {
+      //     wx.showToast({
+      //       title: '保存成功',
+      //     })
+      //   }, 
+      //   fail: (err) => {
+      //     wx.showToast({
+      //       title: '保存失败',
+      //       icon: 'error'
+      //     })
+      //   },
+      //   complete: () => {
+      //     this.setData({
+      //       saving: false
+      //     })
+      //   }
+      // })
+      setTimeout(() => {
+        this.setData({
+          saving: false
+        })
+      }, 5000)
+    },
+
+    fetchInfo() {
+      wx.request({
+        url: `${app.globalData.baseUrl}/api/getInfo`,
+        success: (res) => {
+          this.setData({
+            info: res.data
+          })
+        },
+        fail: (err) => {
+          wx.showToast({
+            title: '获取我的资料失败',
+            icon: 'error'
+          })
+        }
+      })
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+      // this.fetchInfo()
     },
 
     /**
@@ -46,24 +117,4 @@ Page({
 
     },
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
-    }
 })
