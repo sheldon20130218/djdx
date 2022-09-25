@@ -10,3 +10,9 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+.empty-text {
+  display: flex;
+  justify-content: center;
+  margin: 50rpx;
+}

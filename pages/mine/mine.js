@@ -39,7 +39,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-      console.log("mine onShow");
       this.setData({
         avatarUrl: app.globalData.userInfo?.avatarBase64 || app.globalData.defaultAvatarUrl,
         nickname: app.globalData.userInfo?.nickname || app.globalData.defaultNickname
@@ -60,24 +59,4 @@ Page({
 
     },
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
-    }
 })

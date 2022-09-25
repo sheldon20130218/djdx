@@ -11,31 +11,20 @@ Page({
         clockined: false,
         desc:"天真言：出家超俗，皆宿有良契，故能独拔常伦。若慎终如始，精至修练，当福延七祖，庆流一门。所谓九层之台，起于累土，千里之行，始于足下，乃至功成德就，白日升天。于是乎，开度之时，宜受初真之戒。其戒有十尔，当受之。",
         date:"",
-        checkboxItems: [
-            {name: '第一戒者，不得阴贼潜谋，害物利己，当行阴德，广济群生。', value: '1', checked: true},
-            {name: '第二戒者，不得杀害含生，以充滋味，当行慈惠，以及昆虫。', value: '2'},
-            {name: '第三戒者，不得淫邪败真，秽慢灵气，当守贞操，使无缺犯。', value: '3'},
-            {name: '第四戒者，不得败人成功，离人骨肉，当以道助物，令九族雍和。', value: '4'},
-            {name: '第五戒者，不得谗毁贤良，露才扬己，当称人之美善，不自伐其功能。', value: '5'},
-            {name: '第六戒者，不得饮酒过羌，食肉违禁，当调和气性，专务清虚。', value: '6'},
-            {name: '第七戒者，不得贪求无厌，积财不散，当行节俭，惠恤贫穷。', value: '7'},
-            {name: '第八戒者，不得交游非贤，居处秽杂，当慕胜己，栖集清虚。', value: '8'},
-            {name: '第九戒者，不得不忠不孝，不仁不信，当尽节君亲，推诚万物。。', value: '9'},
-            {name: '第十戒者，不得轻忽言笑，举动非真，当持重寡词，以道德为务。', value: '10'}
-        ],
+        preceptList: [],
         clockinIds: [],
         saving: false
     },
 
     checkboxChange: function ({detail: { value }}) {
-        const {clockined, checkboxItems} = this.data
+        const {clockined, preceptList} = this.data
         if (!clockined) {
-          checkboxItems.forEach(item => {
+          preceptList.forEach(item => {
             item.checked = value.indexOf(item.value) !== -1
           })
         }
         this.setData({
-          checkboxItems,
+          preceptList,
           clockinIds: value
         })
     },
@@ -120,15 +109,52 @@ Page({
     },
 
     fetchPercept() {
+      const time = new Date(formatDate(new Date())).valueOf()
+      wx.showLoading({
+        title: '加载打卡数据中',
+      })
       wx.request({
-        url: `${app.globalData.baseUrl}/api/precepts/today`,
+        url: `${app.globalData.baseUrl}/api/clockin/history`,
+        method: 'POST',
         header: {
-          token: app.globalData.userInfo.token
+          'content-type': 'application/x-www-form-urlencoded',
+          token: app.globalData.userInfo.token,
+        },
+        data: {
+          time
         },
         success: (res) => {
-          if (res.statusCode === 200 && res.data) {
-            console.log('res data', res.data);
+          if (res.statusCode === 200) {
+            const elementaryRank = res.data?.elementaryRank || []
+            const clockined = elementaryRank.find(item => item.isClockin)?.isClockin || false
+            this.setData({
+              preceptList: elementaryRank,
+              clockined
+            })
+            wx.hideLoading()
+          } else {
+            wx.hideLoading({
+              success: (res) => {
+                wx.showLoading({
+                  title: '数据加载失败，请稍后重试',
+                  icons: 'error'
+                })
+              },
+            })
           }
+        },
+        fail: (err) => {
+          wx.hideLoading({
+            success: (res) => {
+              wx.showLoading({
+                title: '数据加载失败，请稍后重试',
+                icons: 'error'
+              })
+            },
+          })
+        },
+        complete: () => {
+          wx.stopPullDownRefresh()
         }
       })
     },
@@ -173,14 +199,7 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
-
+      this.fetchPercept()
     },
 
     /**

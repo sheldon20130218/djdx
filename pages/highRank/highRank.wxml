@@ -1,11 +1,14 @@
 <!--pages/highRank/highRank.wxml-->
 <mp-form-page title="天仙大戒" subtitle="{{date}}">
-    <mp-cells title="十种远身行法">  
-        <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange">
-            <mp-checkbox wx:for="{{checkboxItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
-        </mp-checkbox-group>
-    </mp-cells>
-    <view slot="button">
-      <button class="weui-btn" type="primary" disabled="{{clockined}}" bindtap="onSave">{{clockined ? '今日已打卡' : '打卡'}}</button>
+  <mp-cells title="{{highRanktitle}}">
+    <view wx:if="{{preceptList.length === 0}}">
+      <text class="empty-text">暂无数据</text>
     </view>
+    <mp-checkbox-group wx:else prop="checkbox" multi="{{true}}" bindchange="checkboxChange">
+      <mp-checkbox wx:for="{{preceptList}}" wx:key="preceptId" label="{{item.precept}}" value="{{item.preceptId}}" checked="{{item.isClockin}}" />
+    </mp-checkbox-group>
+  </mp-cells>
+  <view wx:if="{{preceptList.length !== 0}}" slot="button">
+    <button class="weui-btn" type="primary" disabled="{{clockined}}" bindtap="onSave">{{clockined ? '今日已打卡' : '打卡'}}</button>
+  </view>
 </mp-form-page>

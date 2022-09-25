@@ -1,3 +1,5 @@
+const { formatDate } = require("../../utils/util")
+
 // pages/info/info.js
 const app = getApp()
 Page({
@@ -8,7 +10,7 @@ Page({
     data: {
       saving: false,
       info: {
-        phone: '13100001111',
+        phone: '',
         sect: '',
         inheritance: '',
         legalName: '',
@@ -17,7 +19,8 @@ Page({
         crownTime: '',
         teachNo: '',
         specialty: ''
-      }
+      },
+      endDate: ''
     },
 
     onChange({detail: { value }, currentTarget: { id }}) {
@@ -87,6 +90,10 @@ Page({
      */
     onLoad(options) {
       // this.fetchInfo()
+      const endDate = formatDate(new Date)
+      this.setData({
+        endDate
+      })
     },
 
     /**

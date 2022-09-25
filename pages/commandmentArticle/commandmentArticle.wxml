@@ -1,19 +1,19 @@
-<mp-tabs 
+<view style="height: 100%;">
+<mp-tabs  
   tabs="{{tabs}}" 
   activeTab="{{activeTab}}" 
   swiperClass="weui-tabs-swiper"
-  bindtabclick="onTabCLick"
-  bindchange="onChange"
-  activeClass="tab-bar-title__selected"
->
+  bindtabclick="onTabCLick" 
+  bindchange="onChange" 
+  activeClass="tab-bar-title__selected">
   <block wx:for="{{tabs}}" wx:key="index" wx:for-item="item">
-    <view class="tab-content" slot="tab-content-{{index}}" > 
-        <scroll-view scroll-y="true" style="height: 1250rpx" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" enhanced="{{true}}" show-scrollbar="{{true}}">
-            <view wx:for="{{item.rank}}" wx:key="rankIndex" wx:for-item="rankItem" >
-                {{rankItem}}
-            </view>
-
-        </scroll-view>
+    <view class="tab-content" slot="tab-content-{{index}}">
+      <scroll-view slot="tab-content-{{index}}" scroll-y="true" style="height: 90vh">
+        <view wx:for="{{item.rank}}" wx:key="rankIndex" wx:for-item="rankItem">
+          {{rankItem}}
+        </view>
+      </scroll-view>
     </view>
   </block>
 </mp-tabs>
+</view>

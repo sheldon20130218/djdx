@@ -21,7 +21,7 @@
         <input id="currentTaoistTemple" class="weui-input" name="currentTaoistTemple" value="{{info.currentTaoistTemple}}" placeholder="请输入现居宫观庵" bindinput="onChange" />
       </mp-cell>
       <mp-cell title="冠巾时间">
-        <picker id="crownTime" name="crownTime" mode="date" value="{{info.crownTime}}" bindchange="onChange" >
+        <picker id="crownTime" name="crownTime" mode="date" value="{{info.crownTime}}" end="{{endDate}}" bindchange="onChange" >
           <text wx:if="{{info.crownTime}}" >{{info.crownTime}}</text>
           <text wx:else style="color: #808080;">请选择冠巾时间</text>
         </picker>

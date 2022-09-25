@@ -8,17 +8,26 @@
     </mp-cell>
   </mp-cells>
   <mp-cells title="初真">
-    <mp-checkbox-group id="elementaryRank" prop="elementaryRank" bindchange="onCheckboxChange">
+    <view wx:if="{{elementaryRank.length === 0}}">
+      <text class="empty-text">暂无数据</text>
+    </view>
+    <mp-checkbox-group wx:else id="elementaryRank" prop="elementaryRank" bindchange="onCheckboxChange">
       <mp-checkbox wx:for="{{elementaryRank}}" wx:key="preceptId" label="{{item.precept}}" value="{{item.preceptId}}" checked="{{item.isClockin}}" />
     </mp-checkbox-group>
   </mp-cells>
   <mp-cells title="中级">
-    <mp-checkbox-group id="middleRank" prop="middleRank" bindchange="onCheckboxChange">
+    <view wx:if="{{middleRank.length === 0}}">
+      <text class="empty-text">暂无数据</text>
+    </view>
+    <mp-checkbox-group wx:else id="middleRank" prop="middleRank" bindchange="onCheckboxChange">
       <mp-checkbox wx:for="{{middleRank}}" wx:key="preceptId" label="{{item.precept}}" value="{{item.preceptId}}" checked="{{item.isClockin}}" />
     </mp-checkbox-group>
   </mp-cells>
   <mp-cells title="天仙">
-    <mp-checkbox-group id="hightRank" prop="hightRank" bindchange="onCheckboxChange">
+    <view wx:if="{{hightRank.length === 0}}">
+      <text class="empty-text">暂无数据</text>
+    </view>
+    <mp-checkbox-group wx:else id="hightRank" prop="hightRank" bindchange="onCheckboxChange">
       <mp-checkbox wx:for="{{hightRank}}" wx:key="preceptId" label="{{item.precept}}" value="{{item.preceptId}}" checked="{{item.isClockin}}" />
     </mp-checkbox-group>
   </mp-cells>
