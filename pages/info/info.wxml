@@ -50,7 +50,7 @@
                 <input id="certificateCode" class="weui-input" name="certificateCode" value="{{info.certificateCode}}" placeholder="请输入教职证号" bindinput="onChange" />
             </mp-cell>
             <mp-cell title="特长">
-                <textarea id="speciality" class="weui-textarea" auto-height maxlength="-1" name="speciality" value="{{info.speciality}}" placeholder="请输入特长" bindinput="onChange" />
+                <textarea id="specialty" class="weui-textarea" auto-height maxlength="-1" name="specialty" value="{{info.specialty}}" placeholder="请输入特长" bindinput="onChange" />
             </mp-cell>
         </mp-cells>
         <button class="weui-btn save" type="primary" loading="{{saving}}" bindtap="onSave">保存</button>
