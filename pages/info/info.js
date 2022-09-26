@@ -70,7 +70,11 @@ Page({
 
     fetchInfo() {
       wx.request({
-        url: `${app.globalData.baseUrl}/api/getInfo`,
+        url: `${app.globalData.baseUrl}/api/user/findUserInfo`,
+        method: 'POST',
+        header: {
+            token: app.globalData.userInfo.token
+        },
         success: (res) => {
           this.setData({
             info: res.data
@@ -89,7 +93,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-      // this.fetchInfo()
+      this.fetchInfo()
       const endDate = formatDate(new Date)
       this.setData({
         endDate
