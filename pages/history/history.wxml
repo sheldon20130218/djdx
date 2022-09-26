@@ -24,11 +24,11 @@
     </mp-checkbox-group>
   </mp-cells>
   <mp-cells title="天仙">
-    <view wx:if="{{hightRank.length === 0}}">
+    <view wx:if="{{highRank.length === 0}}">
       <text class="empty-text">暂无数据</text>
     </view>
-    <mp-checkbox-group wx:else id="hightRank" prop="hightRank" bindchange="onCheckboxChange">
-      <mp-checkbox wx:for="{{hightRank}}" wx:key="preceptId" label="{{item.precept}}" value="{{item.preceptId}}" checked="{{item.isClockin}}" />
+    <mp-checkbox-group wx:else id="highRank" prop="highRank" bindchange="onCheckboxChange">
+      <mp-checkbox wx:for="{{highRank}}" wx:key="preceptId" label="{{item.precept}}" value="{{item.preceptId}}" checked="{{item.isClockin}}" />
     </mp-checkbox-group>
   </mp-cells>
 </view>

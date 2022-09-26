@@ -11,7 +11,7 @@ Page({
     date: '',
     elementaryRank: [],
     middleRank: [],
-    hightRank: [],
+    highRank: [],
   },
 
   onDateChange({ detail: { value } }) {

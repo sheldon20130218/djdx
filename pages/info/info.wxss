@@ -2,3 +2,8 @@
 .save {
   margin: 50rpx;
 }
+
+.error-tips {
+    color: red;
+    font-size: small;
+}
