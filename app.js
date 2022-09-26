@@ -3,6 +3,7 @@
 App({
   globalData: {
     baseUrl: 'https://www.ywschm.cn',
+    //baseUrl: 'https://172.16.1.34:8443',
     defaultAvatarUrl: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
     defaultNickname: '微信用户',
     userInfo: {
