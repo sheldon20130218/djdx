@@ -61,7 +61,7 @@ Page({
         this.setData({
             saving: true
         })
-        const time = new Date(formatDate(new Date())).valueOf()
+        const time = new Date(this.data.date).valueOf()
         wx.request({
             url: `${app.globalData.baseUrl}/api/clockin/${typeMap[id]}`,
             method: 'POST',
