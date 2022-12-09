@@ -25,6 +25,19 @@ Page({
         saving: false,
     },
 
+    onLoad() {
+        try {
+          const userInfo = wx.getStorageSync('userInfo')
+          if (!userInfo) {
+            wx.switchTab({
+                url: '/pages/index/index'
+            })
+          }
+        } catch (e) {
+          console.log("读取缓存失败", e);
+        };
+    },
+
     onDateChange({ detail: { value } }) {
         this.setData({
             date: value

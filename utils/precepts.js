@@ -3,61 +3,61 @@ const precepts = [
         "preceptsId": 1,
         "dataType": "1",
         "subType": "",
-        "content": "第一戒者，不得阴贼潜谋，害物利己，当行阴德，广济群生。"
+        "content": "第一戒者，不得不忠不孝，不仁不信，当尽节君亲，推诚万物。"
     },
     {
         "preceptsId": 2,
         "dataType": "1",
         "subType": "",
-        "content": "第二戒者，不得杀害含生，以充滋味，当行慈惠，以及昆虫。"
+        "content": "第二戒者，不得阴贼潜谋，害物利己，当行阴德，广济群生。"
     },
     {
         "preceptsId": 3,
         "dataType": "1",
         "subType": "",
-        "content": "第三戒者，不得淫邪败真，秽慢灵气，当守贞操，使无缺犯。"
+        "content": "第三戒者，不得杀害含生，以充滋味，当行慈惠，以及昆虫。"
     },
     {
         "preceptsId": 4,
         "dataType": "1",
         "subType": "",
-        "content": "第四戒者，不得败人成功，离人骨肉，当以道助物，令九族雍和。"
+        "content": "第四戒者，不得淫邪败真，秽慢灵炁，当守真操，使无缺犯。"
     },
     {
         "preceptsId": 5,
         "dataType": "1",
         "subType": "",
-        "content": "第五戒者，不得谗毁贤良，露才扬己，当称人之美善，不自伐其功能。"
+        "content": "第五戒者，不得败人成功，离人骨肉，当以道助物，令九族雍和。"
     },
     {
         "preceptsId": 6,
         "dataType": "1",
         "subType": "",
-        "content": "第六戒者，不得饮酒过差，食肉违禁，当调和气性，专务清虚。"
+        "content": "第六戒者，不得谗毁贤良，露才扬己，当称人之美善，不自伐其功能。"
     },
     {
         "preceptsId": 7,
         "dataType": "1",
         "subType": "",
-        "content": "第七戒者，不得贪求无厌，积财不散，当行节俭，惠恤贫穷。"
+        "content": "第七戒者，不得饮酒食肉，犯律违禁，当调和气性，专务清虚。"
     },
     {
         "preceptsId": 8,
         "dataType": "1",
         "subType": "",
-        "content": "第八戒者，不得交游非贤，居处秽杂，当慕胜己，栖集清虚。"
+        "content": "第八戒者，不得贪求无厌，积财不散，当行节俭，惠恤贫穷。"
     },
     {
         "preceptsId": 9,
         "dataType": "1",
         "subType": "",
-        "content": "第九戒者，不得不忠不孝，不仁不信，当尽节君亲，推诚万物。"
+        "content": "第九戒者，不得交遊非贤，居处杂秽，当慕胜己，棲集清虚。"
     },
     {
         "preceptsId": 10,
         "dataType": "1",
         "subType": "",
-        "content": "第十戒者，不得轻忽言笑，举动非真，当持重寡词，以道德为务。"
+        "content": "第十戒者，不得轻忽言笑，举动非真，当持重寡辞，以道德为务。"
     },
     {
         "preceptsId": 11,
@@ -1527,7 +1527,7 @@ const precepts = [
         "preceptsId": 255,
         "dataType": "2",
         "subType": "",
-        "content": "第二百四十五戒者，当念七祖父母咸升开堂。"
+        "content": "第二百四十五戒者，当念七祖父母咸升天堂。"
     },
     {
         "preceptsId": 256,
@@ -1539,7 +1539,7 @@ const precepts = [
         "preceptsId": 257,
         "dataType": "2",
         "subType": "",
-        "content": "第二百四十七戒者，当念天尊放白毫相光济度三涂咸得光明。"
+        "content": "第二百四十七戒者，当念天尊放白毫相光济度三途咸得光明。"
     },
     {
         "preceptsId": 258,
