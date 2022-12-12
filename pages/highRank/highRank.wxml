@@ -1,6 +1,6 @@
 <!--pages/highRank/highRank.wxml-->
 <mp-form-page title="天仙大戒" subtitle="{{date}}">
-  <mp-cells title="{{highRanktitle}}">
+  <mp-cells title="{{highRankTitle}}">
     <view wx:if="{{preceptList.length === 0}}">
       <text class="empty-text">暂无数据</text>
     </view>

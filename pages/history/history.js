@@ -142,7 +142,7 @@ Page({
             },
             success: (res) => {
                 if (res.statusCode === 200) {
-                    const { elementaryClockIn, elementaryRank, middleClockIn, middleRank, highClockIn, highRank, highRanktitle } = res.data
+                    const { elementaryClockIn, elementaryRank, middleClockIn, middleRank, highClockIn, highRank, highRankTitle } = res.data
                     const clockinObj = {
                         elementaryRank: elementaryClockIn,
                         middleRank: middleClockIn,
@@ -152,7 +152,7 @@ Page({
                         elementaryRank,
                         middleRank,
                         highRank,
-                        highRanktitle,
+                        highRankTitle,
                         clockinObj,
                         clockinIds: {}
                     })

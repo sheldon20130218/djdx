@@ -11,7 +11,7 @@ Page({
         clockined: false,
         desc: "",
         date: '',
-        highRanktitle: '',
+        highRankTitle: '',
         preceptList: [],
         clockinIds: [],
         saving: false
@@ -127,10 +127,10 @@ Page({
             success: (res) => {
                 if (res.statusCode === 200) {
                     const highRank = res.data?.highRank || []
-                    const highRanktitle = res.data.highRanktitle
+                    const highRankTitle = res.data.highRankTitle
                     const clockined = res.data?.highClockIn || false
                     this.setData({
-                        highRanktitle,
+                        highRankTitle,
                         preceptList: highRank,
                         clockined
                     })

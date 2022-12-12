@@ -1,2 +1,7 @@
 /* pages/highRank/highRank.wxss */
 @import '/miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+
+.weui-cells__title{
+    font-size: 17px;
+    color: black;
+}
